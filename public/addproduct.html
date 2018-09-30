@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>华联超市管理系统</title>
+    <link rel="stylesheet" href="./libs/elementui/css/elementui.css">
+    <link rel="stylesheet" href="./styles/addStock.css">
+    <script src="./libs/vue/vue.min.js"></script>
+    <script src="./libs/elementui/js/elementui.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <!-- 右侧头部 -->
+            <el-header>
+                <h2>欢迎你 admin</h2>
+                <p>你可以在这里添加商品</p>
+
+            </el-header>
+            <!-- 右侧内容 -->
+            <el-main>
+                <el-tabs type="border-card" type="card">
+
+                    <el-tab-pane label="商品管理">商品管理</el-tab-pane>
+                    <el-tab-pane label="添加商品">
+                        <el-form :label-position="labelPosition" :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
+                            <el-select v-model="value" placeholder="--选择分类--">
+                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                </el-option>
+                            </el-select>
+
+                            <el-form-item label="商品条形码:" prop="namecode" :rules="[
+                                { required: true, message: '不能为空'},
+                             
+                              ]">
+                                <el-input type="namecode" v-model.number="numberValidateForm.namecode" autocomplete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="数量:" prop="num" :rules="[
+                        { required: true, message: '数量不能为空'},
+                        { type: 'number', message: '数量必须为数字值'}
+                      ]">
+                                <el-input type="num" v-model.number="numberValidateForm.num" autocomplete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="进价:" prop="price" :rules="[
+                            { required: true, message: '进价不能为空'},
+                            { type: 'number', message: '进价必须为数字值'}
+                          ]">
+                                <el-input type="price" v-model.number="numberValidateForm.price" autocomplete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="submitForm('numberValidateForm')">入库</el-button>
+
+                            </el-form-item>
+                        </el-form>
+
+                    </el-tab-pane>
+
+                </el-tabs>
+            </el-main>
+            <!--右侧尾部  -->
+            <el-footer>
+                &copy;copyright 2018 华联超市管理系统
+            </el-footer>
+        </el-container>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    labelPosition: 'top',
+                    numberValidateForm: {
+                        namecode: '',
+                        num: '',
+                        price: ''
+                    },
+                    options: [{
+                        value: '选项1',
+                        label: '商品管理'
+                    }, {
+                        value: '选项2',
+                        label: '添加商品'
+
+
+                    }],
+                    value: '',
+
+
+
+                }
+            },
+            methods: {
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

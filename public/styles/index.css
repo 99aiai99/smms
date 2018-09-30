@@ -1,0 +1,117 @@
+.el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+  
+  }
+  
+  .el-aside {
+   
+    color: #333;
+    text-align: center;
+ 
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+  
+  }
+  
+  .el-container .el-aside,.el-menu-vertical-demo {
+    background-color: black;
+  }
+  /* 自己写的样式 */
+  .el-menu-item{
+     background-color: rgb(10, 29, 29); 
+  }
+  .el-menu-item:hover{
+     background-color:#B3C0D1;
+  }
+  body,html,#app{
+      height: 100%;
+  }
+  *{
+      margin: 0;
+      padding:0;
+  }
+  .el-container{
+      height: 100%;
+  }
+  .el-container .el-aside .left-top{
+      text-align: right;
+      padding-right: 15px;
+  }
+  .el-container .el-aside p:first-child{
+      color:rgba(255, 255, 255, 0.781);
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 20px;
+  }
+  .el-container .el-aside p:nth-child(2){
+      color:#fff;
+      font-size: 10px;
+      margin-bottom: 10px;
+  }
+  .el-container .el-aside p:nth-child(3){
+    color:#fff;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.el-submenu{
+    padding-left: 39px;
+}
+.el-submenu__title{
+    background-color: rgb(2, 182, 41)!important;
+    margin-bottom: 10px;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 6px 0 0 6px;
+}
+/* 右侧样式 */
+#app .el-header{
+    height: 100px!important;
+    background-color:#f2f2f2!important;
+}
+#app .el-header h2{
+   color:black;
+   font-size: 20px;
+   text-align: left;
+   margin-top: 20px;
+   margin-bottom: 10px;
+}
+#app .el-header p{
+   text-align: left;
+}
+#app .el-main h2{
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    background-color: lightgray;
+}
+#app .el-main .el-alert{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#app .grid-content h2{
+    text-align: center;
+}
+#app .grid-content .cell{
+    text-align: center;
+}
+#app .el-footer{
+    text-align: left;
+    padding-top: 20px;
+    background-color: transparent;
+    border-top:1px solid #fff;
+}
+a{
+    text-decoration: none;
+    color:#fff;
+}
+a:hover{
+    color:red;
+}

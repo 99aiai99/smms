@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>账号管理</title>
+    <!-- 引入样式 -->
+    <link rel='stylesheet' href='./libs/elementui/css/elementui.css'></link>
+    <link rel="stylesheet" href="./styles/index.css"></link>
+    <!-- 引入Js -->
+    <script src="./libs/vue/vue.min.js"></script>
+    <script src="./libs/elementui/js/elementui.js"></script>
+    <!-- 检测是否登录 -->
+    <script src="/users/checkIsLogin"></script>
+</head>
+
+<body>
+    <!-- dom -->
+    <div id="app">
+        <!-- 整体 -->
+        <el-container>
+            <!-- 左侧 -->
+            <el-aside width="200px">
+                <!-- 左侧顶部 -->
+                <div class="left-top">
+                    <p>华联超市管理系统</p>
+                    <p>你好，admin</p>
+                    <p>
+                        <a href="main.html" target="contentWrap">管理首页</a> |
+                        <a href="/users/logout">退出系统</a>
+                    </p>
+                </div>
+
+                <!--左侧导航 -->
+                <el-menu class="el-menu-vertical-demo" text-color="#fff" active-text-color="#ffd04b" :unique-opened='true' :default-openeds="['5']"
+                    :default-active="'5-1'">
+                    <!-- 账号管理 -->
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-circle-plus-outline"></i>
+                            <span>账号管理</span>
+                        </template>
+                        <el-menu-item index="1-1">
+                            <a href="./useradd.html" target="contentWrap">添加账号</a>
+                        </el-menu-item>
+                        <el-menu-item index="1-2">
+                            <a href="./userList.html" target="contentWrap">账号列表</a>
+                        </el-menu-item>
+                        <el-menu-item index="1-2"> <a href="./modifyPsd.html" target="contentWrap">密码修改</a></el-menu-item>
+                    </el-submenu>
+
+                    <!-- 商品管理 -->
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-refresh"></i>
+                            <span>商品管理</span>
+                        </template>
+                        <el-menu-item index="2-1">商品管理</el-menu-item>
+                        <el-menu-item index="2-2">添加商品</el-menu-item>
+                    </el-submenu>
+                    <!-- 进货管理 -->
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-zoom-in"></i>
+                            <span>进货管理</span>
+                        </template>
+                        <el-menu-item index="1-1">库存管理</el-menu-item>
+                        <el-menu-item index="1-2">
+                            <a href="./addStock.html" target="contentWrap">添加库存</a>
+                        </el-menu-item>
+
+                    </el-submenu>
+                    <!-- 出货管理 -->
+                    <el-submenu index="4">
+                        <template slot="title">
+                            <i class="el-icon-view"></i>
+                            <span>出货管理</span>
+                        </template>
+                        <el-menu-item index="4-1">销售列表</el-menu-item>
+                        <el-menu-item index="4-2">
+                            <a href="./out-of-storge.html" target="contentWrap">商品出库</a>
+                        </el-menu-item>
+                        <el-menu-item index="4-3">商品退货</el-menu-item>
+                    </el-submenu>
+                    <!-- 系统管理 -->
+                    <el-submenu index="5">
+                        <template slot="title">
+                            <i class="el-icon-goods"></i>
+                            <span>系统管理</span>
+                        </template>
+                        <el-menu-item index="5-1">系统信息</el-menu-item>
+                    </el-submenu>
+                    <!-- 会员管理 -->
+                    <el-submenu index="6">
+                        <template slot="title">
+                            <i class="el-icon-tickets"></i>
+                            <span>会员管理</span>
+                        </template>
+                        <el-menu-item index="6-1">账号管理</el-menu-item>
+                        <el-menu-item index="6-2">添加账号</el-menu-item>
+
+                    </el-submenu>
+                    <!-- 分类管理 -->
+                    <el-submenu index="7">
+                        <template slot="title">
+                            <i class="el-icon-rank"></i>
+                            <span>分类管理</span>
+                        </template>
+                        <el-menu-item index="7-1">分类管理</el-menu-item>
+                        <el-menu-item index="7-2">添加分类</el-menu-item>
+
+                    </el-submenu>
+
+
+
+                </el-menu>
+
+
+
+            </el-aside>
+            <!-- 右侧 -->
+            <iframe name='contentWrap' src="./main.html" width="100%" height="100%" scrolling="yes" frameborder="0">
+
+            </iframe>
+
+        </el-container>
+
+    </div>
+
+    <script>
+        //创建vue实例
+        new Vue({
+            el: '#app',
+
+        })
+
+    </script>
+
+</body>
+
+</html>

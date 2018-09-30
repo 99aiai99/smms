@@ -1,0 +1,25 @@
+body{
+    background-image: url(../images/body_bg.png);
+}
+#app .loginform{
+    background-color: #fff;
+}
+#app .loginform h2{
+    color:black;
+    font-size: 24px;
+    text-indent: 30px;
+}
+#app .loginform{
+    width: 420px;
+    height: 360px;
+    position: absolute;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    margin: auto;
+}
+#app .loginform .el-input{
+    width: 300px;
+    height: 26px;
+}

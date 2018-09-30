@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>华联超市管理系统</title>
+    <link rel="stylesheet" href="./libs/elementui/css/elementui.css">
+    <link rel="stylesheet" href="../public/styles/out-of -storge.css">
+    <script src="./libs/vue/vue.min.js"></script>
+    <script src="./libs/elementui/js/elementui.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+
+            <el-container>
+                <!-- 右侧头部 -->
+                <el-header>
+                    <h2>欢迎你 admin</h2>
+                    <p>商品销售。带
+                        <span>*</span>为必填项目。先把商品加入订单。所有商品都加入订单后点
+                        <span>确认提交</span>完成</p>
+                </el-header>
+                <!-- 右侧内容部分 -->
+                <el-main>
+                    <el-tabs v-model="activeName" @tab-click="handleClick">
+                        <el-tab-pane label="销售明细" name="first">销售明细</el-tab-pane>
+                        <el-tab-pane label="商品出库" name="second">
+                            <div class="maincontent">
+                              
+                                <el-form :label-position="labelPosition" :model="formLabelAlign" ref="formLabelAlign" label-width="100px" class="demo-ruleForm">
+                                    <el-form-item  label="商品条形码:" prop="namecode" :rules="[
+                                            { required: true, message: '不能为空'},
+                                        
+                                          ]">
+                                        <el-input type="namecode" v-model.number="formLabelAlign.numcode" autocomplete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item  label="数量:" prop="num" :rules="[
+                                            { required: true, message: '数量不能为空'},
+                                            { type: 'number', message: '数量必须为数字值'}
+                                          ]">
+                                        <el-input type="num" v-model.number="formLabelAlign.num" autocomplete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="submitForm('formLabelAlign')">加入订单</el-button>
+                                        <el-button @click="resetForm('formLabelAlign')">重新出库</el-button>
+                                    </el-form-item>
+                                </el-form>
+                                <el-table :data="tableData" style="width: 100%">
+                                    <el-table-column prop="name" label="名称">
+                                    </el-table-column>
+                                    <el-table-column prop="number" label="数量">
+                                    </el-table-column>
+                                    <el-table-column prop="singleprice" label="单价">
+                                    </el-table-column>
+                                    <el-table-column prop="sumprice" label="总价">
+                                    </el-table-column>
+                                    <el-table-column prop="dsumprice" label="优惠总价">
+                                    </el-table-column>
+                                </el-table>
+                                <el-form :label-position="labelPosition" :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
+                                    <el-form-item label="会员卡卡号" prop="cardnum" :rules="[
+                                            { required: true, message: '卡号不能为空'},
+                                            { type: 'number', message: '卡号必须为数字值'}
+                                          ]">
+                                        <el-input type="cardnum" v-model.number="numberValidateForm.cardnum" autocomplete="off"></el-input>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button type="primary" @click="submitForm1('numberValidateForm')">确认提交</el-button>
+
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+
+
+
+                        </el-tab-pane>
+                        <el-tab-pane label="商品退货" name="third">商品退货</el-tab-pane>
+                    </el-tabs>
+                </el-main>
+
+                <!--右侧尾部  -->
+                <el-footer>
+                    &copy;copyright 2018 华联超市管理系统
+                </el-footer>
+            </el-container>
+        </el-container>
+
+
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    activeName: 'second',
+                    labelPosition: 'top',
+                    formLabelAlign: {
+                        namecode: '',
+                        num: '',
+
+                    },
+                
+                    tableData: [
+
+                    ],
+                    numberValidateForm: {
+                        cardnum: ''
+                    }
+
+
+
+
+
+                };
+            },
+            methods: {
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+                resetForm(formName) {
+                    this.$refs[formName].resetFields();
+                },
+
+                handleClick(tab, event) {
+                    console.log(tab, event);
+                },
+                submitForm1(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+
+            }
+
+
+        })
+
+    </script>
+
+</body>
+
+</html>

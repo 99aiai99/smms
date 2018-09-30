@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆页面</title>
+    <!-- 引入elementui样式 -->
+    <link rel="stylesheet" href="./libs/elementui/css/elementui.css">
+    <!-- 引入自己的样式  -->
+    <link rel="stylesheet" href="./styles/login.css">
+    <script src="./libs/jquery/jquery.min.js"></script>
+    <!-- 引入js -->
+    <script src="./libs/vue/vue.min.js"></script>
+    <script src="./libs/elementui/js/elementui.js"></script>
+    
+
+</head>
+
+<body>
+    <!-- dom -->
+    <div id="app">
+        <div class="loginform">
+            <h2 class='title'>
+                <i class="el-icon-upload"></i>
+                超市管理系统登录
+            </h2>
+            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="用户名" prop="username">
+                    <el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密&emsp;码" prop="password">
+                    <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" prop="confirePassword">
+                    <el-input type="password" v-model="ruleForm.confirePassword"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <script>
+        //vue实例
+        new Vue({
+            el: '#app',
+            data() {
+
+                var checkpassword = (rule, value, callback) => {
+                    if (value === '') {
+                        callback(new Error('请再次输入密码'));
+                    } else if (value !== this.ruleForm.password) {
+                        callback(new Error('两次输入密码不一致!'));
+                    } else {
+                        callback();
+                    }
+                };
+                return {
+                    ruleForm: {
+                        username: '',
+                        password: '',
+                        confirePassword: ''
+                    },
+                    rules: {
+                        username: [
+                            { required: true, message: "请输入用户名", trigger: 'blur' },
+                            { min: 5, max: 12, message: "5-12位之间", trigger: 'blur' }
+                        ],
+                        password: [
+                            { required: true, message: "请输入密码", trigger: 'blur' },
+                            { min: 5, max: 12, message: "6-10位之间", trigger: 'blur' }
+
+                        ],
+                        confirePassword: [
+                            { validator: checkpassword, required: true, trigger: 'blur' }
+                        ]
+                    }
+                };
+            },
+            methods: {
+                //提交表单
+                submitForm(formName) {
+                   this.$refs[formName].validate((valid)=>{
+                        if(valid){
+                        //     alert('前端验证通过！可发送给后端'+'用户名是：'+this.ruleForm.username+
+                        // '密码:'+this.ruleForm.password);
+                          var params = {
+                              username:this.ruleForm.username,
+                              password:this.ruleForm.password
+
+                          }
+                           $.post("/users/login",params,function(data){
+                                 if(data.errcode==="1"){
+                                     alert(data.msg);
+                                     location.href="./index.html"
+                                 }else{
+                                     alert(data.msg);
+                                 }
+                           })
+                        
+                        }else{
+                            console.log('前端验证失败，不允许提交');
+                            return false;
+                        }
+                     })
+                    
+                },
+                //重置表单
+                resetForm(formName){
+                    this.$refs[formName].resetFields();
+                }
+            }
+
+
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

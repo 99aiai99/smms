@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- 引入样式 -->
+     <link rel='stylesheet' href='./libs/elementui/css/elementui.css'></link>
+     <link rel="stylesheet" href="./styles/index.css"></link>
+     <!-- 引入Js -->
+     <script src="./libs/vue/vue.min.js"></script>
+     <script src="./libs/elementui/js/elementui.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 右侧内容 -->
+        <el-container>
+            <!-- 右侧头部 -->
+            <el-header>
+                <h2>欢迎你 admin</h2>
+                <p>查看详细系统信息</p>
+
+
+            </el-header>
+            <!-- 右侧中间部分 -->
+            <el-main>
+                <h2>系统信息</h2>
+
+                <el-alert title="成功提示的文案" type="success">
+                </el-alert>
+                <el-alert title="消息提示的文案" type="info">
+                </el-alert>
+                <el-row :gutter="50">
+                    <el-col :span="12">
+                        <div class="grid-content bg-purple">
+                            <h2>销售排行</h2>
+                            <el-table :data="tableData" style="width: 100%">
+                                <el-table-column prop="product" label="商品名称">
+                                </el-table-column>
+                                <el-table-column prop="num" label="销量">
+                                </el-table-column>
+
+                            </el-table>
+
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <div class="grid-content bg-purple-light">
+                            <h2>缺货商品</h2>
+                            <el-table :data="tableData" style="width: 100%">
+                                <el-table-column prop="product" label="商品名称">
+                                </el-table-column>
+                                <el-table-column prop="num" label="销量">
+                                </el-table-column>
+
+                            </el-table>
+
+                        </div>
+                    </el-col>
+                </el-row>
+
+
+
+            </el-main>
+            <!--右侧尾部  -->
+            <el-footer>
+                &copy;copyright 2018 华联超市管理系统
+            </el-footer>
+        </el-container>
+
+
+        <script>
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        tableData: [{
+                            product: '沙宣',
+                            num: 18001
+                        }
+                        ]
+                    }
+                },
+            })
+        </script>
+    </div>
+</body>
+
+</html>
